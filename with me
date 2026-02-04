@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo de Fourth Wing - Slides</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Preto */
+            color: #FFD700; /* Dourado */
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #FFD700; /* Dourado */
+        }
+        .content {
+            font-size: 1.2em;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        .dragon-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: #8B0000; /* Vermelho escuro */
+            border-radius: 50%;
+            animation: fly 3s infinite ease-in-out;
+            margin: 20px;
+        }
+        @keyframes fly {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-50px) rotateY(180deg); }
+        }
+        .fortress {
+            width: 300px;
+            height: 200px;
+            background-color: #808080; /* Cinza */
+            position: relative;
+        }
+        .dragon-3d {
+            width: 100%;
+            height: 300px;
+        }
+        .nav {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            background-color: #00008B; /* Azul profundo */
+            color: #FFD700; /* Dourado */
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #8B0000; /* Vermelho escuro */
+        }
+    </style>
+    <!-- Incluir Three.js para animações 3D básicas (dragões) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="slides">
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide1">
+            <h1 class="title">Resumo de Fourth Wing (Quarta Asa)</h1>
+            <p class="content">Uma jornada épica de dragões, guerra e sobrevivência em um mundo de magia e traição. Autora: Rebecca Yarros.</p>
+            <div class="dragon-placeholder"></div> <!-- Placeholder para dragão voando -->
+            <div class="dragon-3d" id="dragon1"></div> <!-- 3D básico -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide2">
+            <h1 class="title">Personagens Principais</h1>
+            <p class="content">Violet Sorrengail: Uma jovem fraca e estudiosa, filha de um general, forçada a entrar na academia de guerra. Xaden Riorson: Líder rebelde, filho de um traidor, com um passado sombrio e um laço poderoso com dragões.</p>
+            <div class="dragon-placeholder"></div>
+            <div class="dragon-3d" id="dragon2"></div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide3">
+            <h1 class="title">O Mundo de Basgiath</h1>
+            <p class="content">Basgiath: Uma academia de guerra brutal onde cadetes aprendem a cavalgar dragões e lutar contra ameaças externas. Um lugar de magia antiga, alianças frágeis e perigos constantes.</p>
+            <div class="fortress"></div>
+            <div class="dragon-3d" id="dragon3"></div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide4">
+            <h1 class="title">O Conflito Inicial</h1>
+            <p class="content">Violet é forçada a ingressar na academia contra sua vontade, desafiando expectativas. Ela enfrenta desafios físicos e políticos, enquanto forma laços inesperados com dragões.</p>
+            <div class="dragon-placeholder" style="animation: fly 2s infinite;"></div>
+            <div class="dragon-3d" id="dragon4"></div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide5">
+            <h1 class="title">Desenvolvimento e Treinamentos</h1>
+            <p class="content">Treinamentos intensos: Batalhas simuladas, formação de laços com dragões e descobertas sobre magia. Violet prova sua força, enfrentando rivais e traições iniciais.</p>
+            <div class="dragon-placeholder"></div>
+            <div class="dragon-3d" id="dragon5"></div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide" id="slide6">
+            <h1 class="title">Romance e Traições</h1>
+            <p class="content">O romance proibido entre Violet e Xaden floresce, marcado por tensão e intrigas. Traições revelam segredos sombrios, testando lealdades em um mundo de conspirações.</p>
+            <div class="dragon-placeholder"></div>
+            <div class="dragon-3d" id="dragon6"></div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide" id="slide7">
+            <h1 class="title">Clímax e Batalhas</h1>
+            <p class="content">Clímax épico: Guerras contra inimigos externos e internos. Violet cavalga dragões em batalhas mortais, enfrentando o caos e provando seu valor.</p>
+            <div class="dragon-placeholder" style="animation: fly 1s infinite;"></div>
+            <div class="dragon-3d" id="dragon7"></div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide" id="slide8">
+            <h1 class="title">Conclusão/Resumo Final</h1>
+            <p class="content">Conclusão: Violet emerge transformada, com laços eternos com dragões e Xaden. Temas de coragem, amor e sobrevivência em um mundo implacável. Prepare-se para a continuação!</p>
+            <div class="dragon-placeholder"></div>
+            <div class="dragon-3d" id="dragon8"></div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <button id="prev">Anterior</button>
+        <button id="next">Próximo</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        // Função básica para animações 3D com Three.js (dragões simples como cubos animados)
+        function initDragon3D(containerId) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 400 / 300, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(400, 300);
+            document.getElementById(containerId).appendChild(renderer.domElement);
+
+            const geometry = new THREE.BoxGeometry(1, 1, 1); // Cubo representando dragão
+            const material = new THREE.MeshBasicMaterial({ color: 0xFFD700 }); // Dourado
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            camera.position.z = 5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // Inicializar dragões 3D para cada slide
+        initDragon3D('dragon1');
+        initDragon3D('dragon2');
+        initDragon3D('dragon3');
+        initDragon3D('dragon4');
+        initDragon3D('dragon5');
+        initDragon3D('dragon6');
+        initDragon3D('dragon7');
+        initDragon3D('dragon8');
+    </script>
+</body>
+</html>
